@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using TheATCMovieBlog.Data;
 using TheATCMovieBlog.Models;
 
 namespace TheATCMovieBlog.Pages.Casts
@@ -30,13 +25,13 @@ namespace TheATCMovieBlog.Pages.Casts
                 return NotFound();
             }
 
-            var cast =  await _context.Cast.FirstOrDefaultAsync(m => m.ID == id);
+            var cast = await _context.Cast.FirstOrDefaultAsync(m => m.ID == id);
             if (cast == null)
             {
                 return NotFound();
             }
             Cast = cast;
-           ViewData["MovieID"] = new SelectList(_context.Movie, "ID", "ID");
+            ViewData["MovieID"] = new SelectList(_context.Movie, "ID", "Title");
             return Page();
         }
 
@@ -72,7 +67,7 @@ namespace TheATCMovieBlog.Pages.Casts
 
         private bool CastExists(Guid id)
         {
-          return _context.Cast.Any(e => e.ID == id);
+            return _context.Cast.Any(e => e.ID == id);
         }
     }
 }

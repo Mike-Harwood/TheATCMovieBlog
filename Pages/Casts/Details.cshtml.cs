@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using TheATCMovieBlog.Data;
 using TheATCMovieBlog.Models;
 
 namespace TheATCMovieBlog.Pages.Casts
@@ -19,7 +14,9 @@ namespace TheATCMovieBlog.Pages.Casts
             _context = context;
         }
 
-      public Cast Cast { get; set; }
+
+
+        public Cast Cast { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -33,11 +30,17 @@ namespace TheATCMovieBlog.Pages.Casts
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Cast = cast;
             }
             return Page();
+
+
+
+
         }
     }
 }
+
+
