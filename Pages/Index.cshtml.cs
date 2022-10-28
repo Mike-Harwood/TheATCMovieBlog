@@ -1,8 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using TheATCMovieBlog.Services;
+using static TheATCMovieBlog.DTO.MovieDTO;
 
 namespace TheATCMovieBlog.Pages
 {
+
+
+
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
@@ -14,6 +19,10 @@ namespace TheATCMovieBlog.Pages
 
         public void OnGet()
         {
+
+
+
+//          
 
         }
     }

@@ -27,6 +27,10 @@ namespace TheATCMovieBlog.Pages.Movies
             _api = api;
         }
 
+
+
+
+
         public IEnumerable<Cast> CastNames { get; set; }
 
 
@@ -49,6 +53,7 @@ namespace TheATCMovieBlog.Pages.Movies
                 Movie = movie;
             }
             CastNames = _calls.CastQuery(id);
+
             return Page();
         }
     }
