@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TheATCMovieBlog.Data;
+using TheATCMovieBlog.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +14,17 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
+// add to DBCall to Program to make it work.
+
+builder.Services.AddTransient<IDBCalls, DBCalls>();
+builder.Services.AddSingleton<IAPI, API>();
+
+
+
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

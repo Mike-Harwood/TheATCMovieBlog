@@ -1,29 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using TheATCMovieBlog.Data;
 using TheATCMovieBlog.Models;
+using TheATCMovieBlog.Services;
+using Movie = TheATCMovieBlog.Models.Movie;
+
 
 namespace TheATCMovieBlog.Pages.Movies
 {
     public class DetailsModel : PageModel
+
     {
         private readonly TheATCMovieBlog.Data.ApplicationDbContext _context;
 
-        public DetailsModel(TheATCMovieBlog.Data.ApplicationDbContext context)
+        private readonly IAPI _api;
+
+        private readonly IDBCalls _calls;
+        //IWebHostEnvironment
+
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public DetailsModel(TheATCMovieBlog.Data.ApplicationDbContext context, IWebHostEnvironment webHostEnvironment, IDBCalls calls, IAPI api)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
+            _calls = calls;
+            _api = api;
         }
 
-      public Movie Movie { get; set; }
+        public IEnumerable<Cast> CastNames { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(Guid? id)
+
+        public Movie Movie { get; set; }
+
+        public async Task<IActionResult> OnGetAsync(Guid id)
         {
-            if (id == null || _context.Movie == null)
+            if (_context.Movie == null)
             {
                 return NotFound();
             }
@@ -33,10 +44,11 @@ namespace TheATCMovieBlog.Pages.Movies
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Movie = movie;
             }
+            CastNames = _calls.CastQuery(id);
             return Page();
         }
     }
