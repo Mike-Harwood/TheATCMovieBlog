@@ -13,25 +13,23 @@ namespace TheATCMovieBlog.Pages.Movies
     {
         private readonly TheATCMovieBlog.Data.ApplicationDbContext _context;
 
-        private readonly IAPI _api;
+
 
         private readonly IDBCalls _calls;
         //IWebHostEnvironment
 
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public DetailsModel(TheATCMovieBlog.Data.ApplicationDbContext context, IWebHostEnvironment webHostEnvironment, IDBCalls calls, IAPI api)
+        public DetailsModel(TheATCMovieBlog.Data.ApplicationDbContext context, IWebHostEnvironment webHostEnvironment, IDBCalls calls)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
             _calls = calls;
-            _api = api;
+        
         }
 
 
-
-
-
         public IEnumerable<Cast> CastNames { get; set; }
+        //public IEnumerable<API> MovieAPI { get; set; }
 
 
         public Movie Movie { get; set; }

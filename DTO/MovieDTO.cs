@@ -9,7 +9,6 @@
             public string name { get; set; }
         }
 
-
         public class ProductionCompany
         {
             public int id { get; set; }
@@ -24,7 +23,7 @@
             public string name { get; set; }
         }
 
-        public class Root
+        public class ApiMovie
         {
             public bool adult { get; set; }
             public string backdrop_path { get; set; }
@@ -59,6 +58,8 @@
             public string iso_639_1 { get; set; }
             public string name { get; set; }
         }
+
+
 
 
 

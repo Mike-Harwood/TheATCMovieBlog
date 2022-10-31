@@ -1,9 +1,10 @@
-﻿using TheATCMovieBlog.DTO;
+﻿
+using static TheATCMovieBlog.DTO.MovieDTO;
 
 namespace TheATCMovieBlog.Services
 {
     public interface IAPI
     {
-        Task<MovieDTO.Root> MovieAPI();
+        Task<ApiMovie> MovieAPI();
     }
 }
