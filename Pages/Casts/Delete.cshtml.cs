@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TheATCMovieBlog.Models;
 
@@ -15,7 +16,8 @@ namespace TheATCMovieBlog.Pages.Casts
         }
 
         [BindProperty]
-        public Cast Cast { get; set; }
+        public Cast Cast { get; set; } = default!;
+
 
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
@@ -30,11 +32,15 @@ namespace TheATCMovieBlog.Pages.Casts
             if (cast == null)
             {
                 return NotFound();
+
             }
             else
             {
-                Cast = cast;
+
             }
+
+            Cast = cast;
+            ViewData["MovieID"] = new SelectList(_context.Movie, "ID", "Title");
             return Page();
         }
 

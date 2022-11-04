@@ -19,6 +19,25 @@ namespace TheATCMovieBlog.Pages
             _api = api;
             _context = context;
         }
+        //public IReadOnlyList<MovieInfo> Results { get; set; }
+        //public Models.Movie Movie { get; set; }
+
+        //public async Task OnGetAsync()
+        //{
+        //    //get the movie title https://github.com/nCubed/TheMovieDbWrapper https://github.com/nCubed/TheMovieDbWrapper/blob/master/DM.MovieApi.IntegrationTests/DM.MovieApi.IntegrationTests.cs
+
+        //    var movieApi = MovieDbFactory.Create<IApiMovieRequest>().Value; 
+
+        //    ApiSearchResponse<MovieInfo> response = await movieApi.GetTopRatedAsync();
+
+        //    Results = response.Results;
+
+
+        //}
+
+
+
+
 
         public ApiMovie MovieAPI2 { get; set; } = new ApiMovie();
 
