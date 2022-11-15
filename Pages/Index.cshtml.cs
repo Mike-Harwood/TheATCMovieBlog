@@ -1,24 +1,36 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using TheATCMovieBlog.MovieDTO;
 using TheATCMovieBlog.Services;
-using static TheATCMovieBlog.DTO.MovieDTO;
 
 namespace TheATCMovieBlog.Pages
 {
 
-
+    [BindProperties]
 
     public class IndexModel : PageModel
     {
         private readonly TheATCMovieBlog.Data.ApplicationDbContext _context;
         private readonly ILogger<IndexModel> _logger;
-        private readonly IAPI _api;
-        public IndexModel(ILogger<IndexModel> logger, IAPI api, TheATCMovieBlog.Data.ApplicationDbContext context)
+        private readonly IAPI _iapi;
+
+
+        public string GetMovieImagePath(string partialPath)
+        { return "https://image.tmdb.org/t/p/w300/" + partialPath; }
+
+        private string[] movieIDs = new string[] { "557", "2034", "73586", "113988" };
+
+        public Root[] Roots = new Root[4];
+        public IndexModel(ILogger<IndexModel> logger, IAPI iapi, TheATCMovieBlog.Data.ApplicationDbContext context)
         {
             _logger = logger;
-            _api = api;
+            _iapi = iapi;
             _context = context;
         }
+
+
+
+
         //public IReadOnlyList<MovieInfo> Results { get; set; }
         //public Models.Movie Movie { get; set; }
 
@@ -39,17 +51,20 @@ namespace TheATCMovieBlog.Pages
 
 
 
-        public ApiMovie MovieAPI2 { get; set; } = new ApiMovie();
+        //public ApiMovie MovieAPI2 { get; set; } = new ApiMovie();
 
 
 
-        public async Task<IActionResult> OnGet()
+        public void OnGet()
         {
 
-            MovieAPI2 = await _api.MovieAPI();
+            //MovieAPI2 = await _iapi.MovieAPI();
 
-            return Page();
-
+            //return Page();
+            for (int i = 0; i < movieIDs.Length; i++)
+            {
+                Roots[i] = _iapi.MovieAPI(movieIDs[i]).Result;
+            }
 
         }
 

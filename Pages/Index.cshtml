@@ -1,48 +1,47 @@
 ﻿@page
 @model IndexModel
+@using TheATCMovieBlog.MovieDTO;
 @{
-    ViewData["Title"] = "Home page";
+    //ViewData["Title"] = "Home page";
 }
 
 
 
 @*<div class="container">
-    <div class="row">
-        @foreach (var item in Model.Results)
-        {
-            var PosterPath = "" + item.PosterPath;
+        <div class="row">
+            @foreach (var item in Model.Results)
+            {
+                var PosterPath = "" + item.PosterPath;
 
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src=@PosterPath alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">@item.Title</h5>
-                    <p class="card-text">@item.Overview</p>
-                    <p class="card-text">@item.ReleaseDate</p>
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src=@PosterPath alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <p class="card-text">@item.Overview</p>
+                        <p class="card-text">@item.ReleaseDate</p>
+                    </div>
                 </div>
-            </div>
-        }
-    </div>
-</div>*@
+            }
+        </div>
+    </div>*@
 
 <div class="card" style=" margin-top: 20px">
-        <div class="">
-            <h1 class="display-2 text-center">ATC Movie  </h1>
-            <h5 class="display-2 text-center">Welcome to the Movie database</h5>
-
-
-
-            <div>
-
-                <div class="card" style=" margin-top: 20px">
-                    <div class="card-header">
-
-                        <img src="https://www.themoviedb.org/3/movie/550/@Model.MovieAPI2.poster_path" alt="Alternate Text" />
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
+    <div class="">
+        <h1 class="display-2 text-center">ATC Movie  </h1>
+        <h5 class="display-2 text-center">Welcome to the Movie database</h5>
     </div>
 
+    <div class="row">
+        @foreach (var movie in Model.Roots)
+        {
+
+            <div class="col small-6" style="background-color: white;">
+                <h2>@movie.title</h2>
+                <img src="@Model.GetMovieImagePath(movie.poster_path)" />
+                <p>@movie.overview</p>
+            </div>
+        }
+
+
+
+    </div>

@@ -17,7 +17,10 @@ builder.Services.AddRazorPages();
 // add to DBCall to Program to make it work.
 
 builder.Services.AddTransient<IDBCalls, DBCalls>();
-builder.Services.AddSingleton<IAPI, API>();
+/*builder.Services.AddSingleton<IAPI, API>();*/
+
+builder.Services.AddScoped<IAPI, API>();
+
 
 
 
