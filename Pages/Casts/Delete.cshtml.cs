@@ -20,6 +20,7 @@ namespace TheATCMovieBlog.Pages.Casts
 
 
 
+
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null || _context.Cast == null)
@@ -40,7 +41,7 @@ namespace TheATCMovieBlog.Pages.Casts
             }
 
             Cast = cast;
-            ViewData["MovieID"] = new SelectList(_context.Movie, "ID", "Title");
+            ViewData["MovieID"] = new SelectList(_context.Movie, "ID", "ID");
             return Page();
         }
 

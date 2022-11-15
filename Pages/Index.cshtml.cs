@@ -18,7 +18,7 @@ namespace TheATCMovieBlog.Pages
         public string GetMovieImagePath(string partialPath)
         { return "https://image.tmdb.org/t/p/w300/" + partialPath; }
 
-        private string[] movieIDs = new string[] { "557", "2034", "73586", "113988" };
+        private string[] movieIDs = new string[] { "557", "2034", "882598", "436270" };
 
         public Root[] Roots = new Root[4];
         public IndexModel(ILogger<IndexModel> logger, IAPI iapi, TheATCMovieBlog.Data.ApplicationDbContext context)
